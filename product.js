@@ -220,21 +220,20 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(e.key === "Enter");
       let searchText = search.value;
       try {
-        if (e.key == "Enter") {
-          container.innerHTML = "";
-          let response = await fetch("https://fakestoreapi.in/api/products");
-          let data = await response.json();
-          let datas = await data.products;
-          let filter = datas.filter(
-            (val) => val.title.toLowerCase().includes(searchText.toLowerCase())
-            // val.title.toLowerCase().includes(searchText.toLowerCase()) ||
-            // val.description.toLowerCase().includes(searchText.toLowerCase())
-          );
+        container.innerHTML = "";
+        let response = await fetch("https://fakestoreapi.in/api/products");
+        let data = await response.json();
+        let datas = await data.products;
+        let filter = datas.filter(
+          (val) => val.title.toLowerCase().includes(searchText.toLowerCase())
+          // val.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          // val.description.toLowerCase().includes(searchText.toLowerCase())
+        );
 
-          filter.forEach((product) => {
-            let card = document.createElement("div");
+        filter.forEach((product) => {
+          let card = document.createElement("div");
 
-            card.innerHTML = `
+          card.innerHTML = `
  <div class="card" style=" width: 23rem; height:1100px;display: grid;grid-template-rows:250px 675px 100px 50px 25px ">
     <img style="height:250px" src="${product.image}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -254,9 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 
             `;
-            container.append(card);
-          });
-        }
+          container.append(card);
+        });
       } catch (error) {
         console.log("xatolik", error);
       }
